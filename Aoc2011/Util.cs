@@ -17,5 +17,13 @@ namespace Aoc
         {
             return File.ReadAllLines(@"data/" + filename);
         }
+
+        public static string ReverseString(string s)
+        {
+            var stringArray = s.ToCharArray();
+            Array.Reverse(stringArray);
+
+            return new string(stringArray);
+        }
     }
 }
