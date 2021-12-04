@@ -25,5 +25,10 @@ namespace Aoc
 
             return new string(stringArray);
         }
+
+        public static int[] ParseNumbersFromLine(string line, char splitChar)
+        {
+            return line.Split(splitChar, StringSplitOptions.RemoveEmptyEntries).Select(s => Int32.Parse(s)).ToArray();
+        }
     }
 }

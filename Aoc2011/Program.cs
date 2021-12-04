@@ -26,6 +26,22 @@ namespace Aoc
             inputD3 = Util.GetStringsFromFile("day3.txt");
             Day3p1(inputD3);
             Day3p2(inputD3);
+
+            Day4p1("day4.txt");
+            Day4p2("day4.txt");
+        }
+
+        static void Day4p2(string filename)
+        {
+            var game = BingoGame.ParseFile(filename);
+
+            Console.WriteLine($"Day4p1: {game.FindLastWinner()}");
+        }
+        static void Day4p1(string filename)
+        {
+            var game = BingoGame.ParseFile(filename);
+
+            Console.WriteLine($"Day4p1: {game.FindWinner()}");
         }
 
         static void Day3p2(IEnumerable<string> binStrings)
