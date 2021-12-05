@@ -10,25 +10,52 @@ namespace Aoc
     {
         static void Main(string[] args)
         {
+            #region Day 1
             var inputD1 = new int[] { 199, 200, 208, 210, 200, 207, 240, 269, 260, 263 };
             inputD1 = Util.GetIntsFromFile("day1.txt");
 
             Day1p1(inputD1);
             Day1p2(inputD1);
 
+            #endregion
+
+            #region Day 2
             var inputD2 = new string[] { "forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2" };
             inputD2 = Util.GetStringsFromFile("day2.txt");
 
             Day2p1(inputD2);
             Day2p2(inputD2);
 
+            #endregion
+
+            #region Day 3
+
             var inputD3 = new string[] { "00100", "11110", "10110", "10111", "10101", "01111", "00111", "11100", "10000", "11001", "00010", "01010" };
             inputD3 = Util.GetStringsFromFile("day3.txt");
             Day3p1(inputD3);
             Day3p2(inputD3);
 
+            #endregion
+
+            #region Day 4
+
             Day4p1("day4.txt");
             Day4p2("day4.txt");
+
+            #endregion
+        
+            #region Day 5
+
+            Day5p1("day5.txt");
+
+            #endregion
+        }
+
+        static void Day5p1(string filename)
+        {
+             var lines = LineCollection.ParseFile(filename);
+             //lines.Print();
+           Console.WriteLine($"Day5p1: {lines.IntersectionCount}");
         }
 
         static void Day4p2(string filename)
