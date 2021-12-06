@@ -43,19 +43,37 @@ namespace Aoc
             Day4p2("day4.txt");
 
             #endregion
-        
+
             #region Day 5
 
             Day5p1("day5.txt");
 
             #endregion
+
+            #region Day 6
+
+            Day6p1();
+
+            #endregion
+        }
+
+        static void Day6p1()
+        {
+            var inputD6 = new int[] { 3, 4, 3, 1, 2 };
+            inputD6 = Util.RegexGetIntsFromFile("day6.txt");
+
+            var school = new LanternFishSchool(inputD6);
+            school.Cycle(80);
+            Console.WriteLine($"Day6p1: {school.Bag.Count}");
+            school.Cycle(256 - 80, true);
+            Console.WriteLine($"Day6p2: {school.Bag.Count}");
         }
 
         static void Day5p1(string filename)
         {
-             var lines = LineCollection.ParseFile(filename);
-             //lines.Print();
-           Console.WriteLine($"Day5p1: {lines.IntersectionCount}");
+            var lines = LineCollection.ParseFile(filename);
+            //lines.Print();
+            Console.WriteLine($"Day5p1: {lines.IntersectionCount}");
         }
 
         static void Day4p2(string filename)
