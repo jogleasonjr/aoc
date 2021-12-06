@@ -35,10 +35,14 @@ namespace Aoc
     {
         public ConcurrentBag<LanternFish> Bag { get; }
 
+        public List<LanternFish> Ocean { get; }
+
         public LanternFishSchool(int[] daysLeft)
         {
             var fish = daysLeft.ToList().Select(f => new LanternFish(f)).ToList();
             Bag = new ConcurrentBag<LanternFish>(fish);
+
+            Ocean = new List<LanternFish>();
         }
 
         public void Cycle(int days, bool verbose = false)
@@ -56,9 +60,10 @@ namespace Aoc
                     }
                 });
 
-                foreach(var fish in newFish) Bag.Add(fish);
+                foreach (var fish in newFish) Bag.Add(fish);
 
-                Console.WriteLine($"Day {i} of {days} | {Bag.Count} fish | {sw.Elapsed} elapsed");
+                if (verbose)
+                    Console.WriteLine($"Day {i} of {days} | {Bag.Count} fish | {sw.Elapsed} elapsed");
 
                 sw.Restart();
             }
