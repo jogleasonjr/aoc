@@ -59,51 +59,38 @@ namespace Aoc
             #endregion
         }
 
-        static void Day6p1()
-        {
-            var inputD6 = new int[] { 3, 4, 3, 1, 2 };
-            //inputD6 = Util.RegexGetIntsFromFile("day6.txt");
-
-            var school = new LanternFishSchool(inputD6);
-            school.Cycle(80);
-            Console.WriteLine($"Day6p1: {school.Bag.Count}");
-        }
-
         static void Day6p2()
         {
             var inputD6 = new int[] { 3, 4, 3, 1, 2 };
-            //inputD6 = Util.RegexGetIntsFromFile("day6.txt");
+            inputD6 = Util.RegexGetIntsFromFile("day6.txt");
 
+            var school = new LanternFishSchool(inputD6);
+            school.Cycle(256, true);
 
-
-            // figure out the total count after X days for each
-            // unique starting number, then sum them all at the end
-            var dict = new Dictionary<int, int>();
-            int sum = 0;
-
-            //foreach (var start in inputD6)
-            for(int i = 0; i < inputD6.Length; i++)
+            ulong yuge = 0;
+            foreach(var fish in school.Bag)
             {
-                var start = inputD6[i];
-
-                var sw = Stopwatch.StartNew();
-                if (!dict.ContainsKey(start))
-                {
-                    var school = new LanternFishSchool(new int[] { start });
-                    school.Cycle(256, true);
-                    dict.Add(start, school.Bag.Count);
-                }
-
-                sum += dict[start];
-
-                
-                Console.WriteLine($"Day {i} of {inputD6.Length} | {start} start | {sum} fish | {sw.Elapsed} elapsed");
-                sw.Restart();
+                yuge += (ulong)fish.Clones;
             }
+            
+            Console.WriteLine($"Day6p2: {yuge}");
+        }
 
-            Console.WriteLine($"Day6p2: {sum}");
-            //school.Cycle(256 - 80, true);
-            //Console.WriteLine($"Day6p2: {school.Bag.Count}");
+        static void Day6p1()
+        {
+            var inputD6 = new int[] { 3, 4, 3, 1, 2 };
+            inputD6 = Util.RegexGetIntsFromFile("day6.txt");
+
+            var school = new LanternFishSchool(inputD6);
+            school.Cycle(80, true);
+
+            ulong yuge = 0;
+            foreach(var fish in school.Bag)
+            {
+                yuge += (ulong)fish.Clones;
+            }
+            
+            Console.WriteLine($"Day6p1: {yuge}");
         }
 
         static void Day5p1(string filename)

@@ -10,6 +10,7 @@ namespace Aoc
         public int CycleCount { get; private set; }
         public int DaysLeft { get; private set; }
 
+        public ulong Clones { get; set; } = 1;
         public LanternFish(int daysLeft)
         {
             DaysLeft = daysLeft;
@@ -49,23 +50,31 @@ namespace Aoc
         {
             for (int i = 0; i < days; i++)
             {
-                var sw = Stopwatch.StartNew();
-                var newFish = new ConcurrentBag<LanternFish>();
-                Parallel.ForEach(Bag, fish =>
+                var clones = new Dictionary<ulong, ulong>();
+                foreach (var fish in Bag)
                 {
                     var spawned = fish.Cycle();
                     if (spawned)
                     {
-                        newFish.Add(new LanternFish(8));
+                        if (!clones.ContainsKey(fish.Clones))
+                        {
+                            clones.Add(fish.Clones, 0);
+                        }
+
+                        clones[fish.Clones]++;
                     }
-                });
+                }
 
-                foreach (var fish in newFish) Bag.Add(fish);
+                foreach (var kvp in clones)
+                {
+                    var parentClones = kvp.Key;
+                    var siblings = kvp.Value;
 
-                if (verbose)
-                    Console.WriteLine($"Day {i} of {days} | {Bag.Count} fish | {sw.Elapsed} elapsed");
-
-                sw.Restart();
+                    Bag.Add(new LanternFish(8)
+                    {
+                        Clones = parentClones * siblings
+                    });
+                }
             }
         }
 
