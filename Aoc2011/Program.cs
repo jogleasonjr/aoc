@@ -11,6 +11,10 @@ namespace Aoc
     {
         static void Main(string[] args)
         {
+            Day10p1();
+            Day10p2();
+            return;
+
             var inputD1 = new int[] { 199, 200, 208, 210, 200, 207, 240, 269, 260, 263 };
             inputD1 = Util.GetIntsFromFile("day1.txt");
 
@@ -45,7 +49,23 @@ namespace Aoc
             Day9p1();
             Day9p2();
         }
-        
+
+
+        static void Day10p2()
+        {
+            var parser = new ChunkParser();
+            var points = parser.GetPointsFromFileP2("day10.txt");
+
+            Console.WriteLine($"Day10p2 points: {points}");
+        }
+
+        static void Day10p1()
+        {
+            var parser = new ChunkParser();
+            int points = parser.GetPointsFromFile("day10.txt");
+
+            Console.WriteLine($"Day10p1 points: {points}");
+        }
         static void Day9p2()
         {
             var m = Util.GetPadded2DIntArrayFromFile("day9.txt", 99);
